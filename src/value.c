@@ -907,6 +907,12 @@ json_int_t json_integer_value(const json_t *json) {
     return json_to_integer(json)->value;
 }
 
+json_int_t *json_integer_value_pointer(const json_t *json) {
+    if (!json_is_integer(json))
+        return 0;
+    return &(json_to_integer(json)->value);
+}
+
 int json_integer_set(json_t *json, json_int_t value) {
     if (!json_is_integer(json))
         return -1;
