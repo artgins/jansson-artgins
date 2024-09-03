@@ -245,6 +245,11 @@ int json_object_iter_set_new(json_t *object, void *iter, json_t *value);
          index < json_array_size(array) && (value = json_array_get(array, index));       \
          index++)
 
+#define json_array_backeach(array, index, value)                                         \
+    for (index = json_array_size(array) - 1;                                             \
+         index >= 0 && (value = json_array_get(array, index));                           \
+         index--)
+
 static JSON_INLINE int json_object_set(json_t *object, const char *key, json_t *value) {
     return json_object_set_new(object, key, json_incref(value));
 }
